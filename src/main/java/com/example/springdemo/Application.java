@@ -5,10 +5,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
 
 @SpringBootApplication
+@EnableWebMvc
 public class Application {
 
     public static void main(String[] args) {
@@ -27,6 +32,23 @@ public class Application {
                 System.out.println(beanName);
             }
 
+        };
+    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+//                        .allowedOrigins("*")
+                        .allowedOrigins("http://localhost:4200")
+                        .allowedMethods("GET", "POST")
+//                        .allowedHeaders("header1", "header2", "header3")
+//                        .exposedHeaders("header1", "header2")
+                        .allowCredentials(false).maxAge(3600);
+            }
         };
     }
 
