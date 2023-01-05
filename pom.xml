@@ -46,6 +46,12 @@
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
 
+        <!-- Thymeleaf (comparable to JSP) for creating server-side HTML pages -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
         <!-- Automatic reload server -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
